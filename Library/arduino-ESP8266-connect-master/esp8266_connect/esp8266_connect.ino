@@ -1,7 +1,7 @@
 #include<ESP8266WiFi.h>
 
 // WiFi Definitions
-const char* ssid = "Hacker";
+const char* ssid = "BevyBot2020";
 const char* password = "Esp8266Test"; // has to be longer than 7 chars
 const char* value = "";
 

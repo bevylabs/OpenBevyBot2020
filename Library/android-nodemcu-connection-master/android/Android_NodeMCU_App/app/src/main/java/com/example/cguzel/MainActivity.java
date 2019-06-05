@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.cguzel.HttpRequestTask;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -63,80 +65,11 @@ public class MainActivity extends AppCompatActivity {
 
             //Connect to default port number. Ex: http://IpAddress:80
             String serverAdress = ipAddress.getText().toString() + ":" + "80";
-            HttpRequestTask requestTask = new HttpRequestTask(serverAdress);
+            HttpRequestTask requestTask = new HttpRequestTask(serverAdress,context);
             requestTask.execute(ledStatus);
         }
     }
 
     ////////////////////////////////////Sending url commands to Node//////////////////////////////////////////
 
-    private class HttpRequestTask extends AsyncTask<String, Void, String> {
-
-        private String serverAdress;
-        private String serverResponse = "";
-        private AlertDialog dialog;
-
-        public HttpRequestTask(String serverAdress) {
-            this.serverAdress = serverAdress;
-
-            dialog = new AlertDialog.Builder(context)
-                    .setTitle("HTTP Response from Ip Address:")
-                    .setCancelable(true)
-                    .create();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            dialog.setMessage("Data sent , waiting response from server...");
-
-            if (!dialog.isShowing())
-                dialog.show();
-
-            String val = params[0];
-            final String url = "http://" + serverAdress + "/led/" + val;
-
-            try {
-                HttpClient client = new DefaultHttpClient();
-                HttpGet getRequest = new HttpGet();
-                getRequest.setURI(new URI(url));
-                HttpResponse response = client.execute(getRequest);
-
-                InputStream inputStream = null;
-                inputStream = response.getEntity().getContent();
-                BufferedReader bufferedReader =
-                        new BufferedReader(new InputStreamReader(inputStream));
-
-                serverResponse = bufferedReader.readLine();
-                inputStream.close();
-
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-                serverResponse = e.getMessage();
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-                serverResponse = e.getMessage();
-            } catch (IOException e) {
-                e.printStackTrace();
-                serverResponse = e.getMessage();
-            }
-
-            return serverResponse;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            dialog.setMessage(serverResponse);
-
-            if (!dialog.isShowing())
-                dialog.show();
-        }
-
-        @Override
-        protected void onPreExecute() {
-            dialog.setMessage("Sending data to server, please wait...");
-
-            if (!dialog.isShowing())
-                dialog.show();
-        }
-    }
 }
