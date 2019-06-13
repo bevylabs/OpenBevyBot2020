@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(result_message);
         if(result_message.indexOf("what") != -1){
             if(result_message.indexOf("your name") != -1){
-                speak("My Name is Mr.Android. Nice to meet you!");
+                speak("I'm the Bevy Bot 20 20. Nice to meet you!");
             }
             if (result_message.indexOf("time") != -1){
                 String time_now = DateUtils.formatDateTime(this, new Date().getTime(),DateUtils.FORMAT_SHOW_TIME);
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 } else {
                     tts.setLanguage(Locale.US);
-                    speak("Hello Buddhika, I am ready to start our conversation");
+                    speak("this is bevy bot 20 20. hello rajith, I am ready to start our conversation");
                 }
             }
         });

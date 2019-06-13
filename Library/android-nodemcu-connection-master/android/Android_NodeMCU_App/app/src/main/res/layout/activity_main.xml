@@ -4,6 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BevyBot 2020 Data passing experiment"
+        android:textSize="50dp"
+        android:textAlignment="center"/>
+
     <EditText
         android:id="@+id/edt_ip"
         android:layout_width="match_parent"

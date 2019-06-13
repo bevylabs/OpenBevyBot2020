@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
         ledOn = (Button) findViewById(R.id.btn_ledOn);
         ledOff = (Button) findViewById(R.id.btn_ledOff);
 
+        ipAddress.setText("192.168.4.1");
+
     }
 
     /** When the button clicks this method executes**/
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 ledStatus = "0";
 
             //Connect to default port number. Ex: http://IpAddress:80
+
             String serverAdress = ipAddress.getText().toString() + ":" + "80";
             HttpRequestTask requestTask = new HttpRequestTask(serverAdress,context);
             requestTask.execute(ledStatus);
