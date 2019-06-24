@@ -1,6 +1,7 @@
-package com.example.cguzel.nodemcu_app;
+ package com.example.cguzel.nodemcu_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -71,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
             HttpRequestTask requestTask = new HttpRequestTask(serverAdress,context);
             requestTask.execute(ledStatus);
         }
+    }
+
+    public void home(View view) {
+
+        Intent myIntent = new Intent(MainActivity.this, Home.class);
+      //  myIntent.putExtra("key", value); //Optional parameters
+        MainActivity.this.startActivity(myIntent);
     }
 
     ////////////////////////////////////Sending url commands to Node//////////////////////////////////////////
